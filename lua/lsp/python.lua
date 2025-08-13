@@ -4,16 +4,6 @@ local M = {}
 ---@param on_attach fun(client, bufnr)  -- your key-mapping callback
 ---@param capabilities table            -- usually from cmp_nvim_lsp
 function M.setup(on_attach, capabilities)
-  ---------------------------------------------------------------------------
-  -- 1. Make sure Pyright is installed (Mason handles the download/update) --
-  ---------------------------------------------------------------------------
-  require("mason-lspconfig").setup({
-    ensure_installed = { "pyright" },
-  })
-
-  ---------------------------------------------------------------------------
-  -- 2. Register the server with nvim-lspconfig ----------------------------
-  ---------------------------------------------------------------------------
   require("lspconfig").pyright.setup({
     on_attach = on_attach,
     capabilities = capabilities,

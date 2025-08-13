@@ -1,6 +1,10 @@
 -- init.lua
 require("core.options")
 require("core.keymaps")
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.opt.termguicolors = true
+
 
 -- Bootstrap lazy.nvim if missing
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -13,23 +17,5 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")    -- load plugin specs
-
--- vim.api.nvim_create_autocmd("FileType", {
---   pattern = "java",
---   callback = function() require("lsp.java") end,
--- })
-
-
--- vim.api.nvim_create_autocmd("FileType", {
---   pattern = "py",
---   callback = function() require("lsp.python") end,
--- })
--- vim.lsp.enable('pyright')
-
--- vim.lsp.enable('jdtls')
-
-vim.cmd.colorscheme("gruvbox")  -- set colorscheme
-
--- vim.lsp.enable('tsserver')
-
-require("lsp")
+require("core.cmp")
+vim.cmd.colorscheme("everforest")  -- set colorscheme

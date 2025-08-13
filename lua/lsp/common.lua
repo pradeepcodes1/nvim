@@ -1,6 +1,16 @@
 -- lua/plugins/lsp/common.lua
 local M = {}
 
+vim.diagnostic.config({
+  virtual_text = true,   -- ← must be true (or table) for inline error text
+})
+
+vim.api.nvim_create_autocmd("CursorHold", {
+  callback = function() vim.diagnostic.open_float(nil, {focus=false}) end
+})
+-- Make CursorHold fire faster if you like:
+vim.o.updatetime = 500
+
 ---------------------------------------------------------------------
 -- 1. Enhanced client capabilities (completion, snippets, etc.)
 ---------------------------------------------------------------------
@@ -8,6 +18,7 @@ local ok_cmp, cmp_lsp = pcall(require, "cmp_nvim_lsp")
 M.capabilities = ok_cmp
   and cmp_lsp.default_capabilities()
   or vim.lsp.protocol.make_client_capabilities()
+
 
 ---------------------------------------------------------------------
 -- 2. on_attach: runs AFTER the language server attaches to each buffer
@@ -20,7 +31,6 @@ function M.on_attach(client, bufnr)
     end
     vim.keymap.set("n", lhs, rhs, { buffer = bufnr, desc = desc })
   end
-
   -- Basic navigation & actions
   nmap("gd", vim.lsp.buf.definition,       "[G]oto [D]efinition")
   nmap("gD", vim.lsp.buf.declaration,      "Go to Declaration")

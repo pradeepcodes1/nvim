@@ -4,6 +4,7 @@ vim.g.mapleader = " "
 map("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Explorer" })
 map("n", "<leader>ff", ":Telescope find_files<CR>", { desc = "Find Files" })
 map("n", "<leader>fg", ":Telescope live_grep<CR>", { desc = "Grep" })
+map("n", "<leader>fb", ":Telescope current_buffer_fuzzy_find<CR>", { desc = "Grep current buffer" })
 map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP Rename" })
 map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
 
