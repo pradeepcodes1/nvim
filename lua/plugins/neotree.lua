@@ -74,21 +74,6 @@ return {
       use_git_status_colors = true,
       highlight = "NeoTreeFileName",
     },
-    git_status = {
-      symbols = {
-        -- Change type
-        added = "", -- or "✚"
-        modified = "", -- or ""
-        deleted = "✖", -- this can only be used in the git_status source
-        renamed = "󰁕", -- this can only be used in the git_status source
-        -- Status type
-        untracked = "",
-        ignored = "",
-        unstaged = "󰄱",
-        staged = "",
-        conflict = "",
-      },
-    },
     -- If you don't want to use these columns, you can set `enabled = false` for each of them individually
     file_size = {
       enabled = true,
@@ -200,13 +185,14 @@ return {
   },
   nesting_rules = {},
   filesystem = {
+      display_name = "fs",
     filtered_items = {
       visible = false, -- when true, they will just be displayed differently than normal items
       hide_dotfiles = true,
       hide_gitignored = true,
       hide_hidden = true, -- only works on Windows for hidden files/directories
       hide_by_name = {
-        --"node_modules"
+        "node_modules"
       },
       hide_by_pattern = { -- uses glob style patterns
         --"*.meta",
@@ -219,8 +205,8 @@ return {
         --".env*",
       },
       never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
-        --".DS_Store",
-        --"thumbs.db"
+        ".DS_Store",
+        "thumbs.db"
       },
       never_show_by_pattern = { -- uses glob style patterns
         --".null-ls_*",
